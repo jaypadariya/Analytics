@@ -1,25 +1,25 @@
 
 #for rice from sklearn
-#from osgeo import gdal
-import math
-import os
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-from dateutil import parser, rrule
-from datetime import datetime, time, date
-import datetime as tm
-import calendar
-import seaborn as sns 
-import math
-from sklearn import datasets
-import statsmodels.api as sm
-from sklearn.metrics import mean_squared_error,r2_score
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-df = pd.read_csv(r"C:\Users\Nitin\Mehsana_Soil_Health_Card.csv")
-X = df['EC']
-Y = df["pH"]
+    from osgeo import gdal
+    import math
+    import os
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    from dateutil import parser, rrule
+    from datetime import datetime, time, date
+    import datetime as tm
+    import calendar
+    import seaborn as sns 
+    import math
+    from sklearn import datasets
+    import statsmodels.api as sm
+    from sklearn.metrics import mean_squared_error,r2_score
+    from sklearn.model_selection import train_test_split
+    from sklearn.linear_model import LinearRegression
+    df = pd.read_csv(r"C:\Users\student\Tutorial-3.csv")
+X = df['Rice']
+Y = df["Rainfall"]
 x=np.array(X[:])
 y=np.array(Y[:])
 
@@ -259,3 +259,24 @@ sklearn.metrics.r2_score(Y, y_pred, sample_weight=None, multioutput=’uniform_a
 
 
 
+
+
+from sklearn.linear_model import LinearRegression
+reg = linear_model.LinearRegression()
+ataset = pandas.read_csv(r'C:\Users\student\Mehasana_EC_pH_f.csv')
+x = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, 1].values
+# Split the dataset into the training set and test set
+# We're splitting the data in 1/3, so out of 30 rows, 20 rows will go into the training set,
+# and 10 rows will go into the testing set.
+xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size = 1/3, random_state = 0)
+linearRegressor = LinearRegression()
+linearRegressor.fit(xTrain, yTrain)
+yPrediction = linearRegressor.predict(xTest)
+plot.scatter(xTrain, yTrain, color = 'red')
+plot.plot(xTrain, linearRegressor.predict(xTrain), color = 'blue')
+plot.title('Salary vs Experience (Training set)')
+plot.xlabel('Years of Experience')
+plot.ylabel('Salary')
+plot.show()
+sklearn.metrics.r2_score(y_true, y_pred, sample_weight=None, multioutput=’uniform_average’)[source]
